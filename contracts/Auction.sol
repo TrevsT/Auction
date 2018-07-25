@@ -29,6 +29,7 @@ contract Auction {
     /// Create a simple auction with `_biddingTime`
     /// seconds bidding time on behalf of the
     /// beneficiary address `_beneficiary`.
+    ///NB Dale the only change I made to the contract is the msg.sender below which assigns the contract creater ad the beneficiary, there now is no beneficary input in the constructor
     constructor(
         uint _biddingTime
     ) public {
