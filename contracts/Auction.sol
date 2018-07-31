@@ -6,6 +6,7 @@ contract Auction {
     // or time periods in seconds.
     address public beneficiary;
     uint public auctionEnd;
+    uint public auctionStart;
 
     // Current state of the auction.
     address public highestBidder;
@@ -33,6 +34,7 @@ contract Auction {
         uint _biddingTime
     ) public {
         beneficiary = msg.sender;
+        auctionStart = now;
         auctionEnd = now + _biddingTime;
     }
 
