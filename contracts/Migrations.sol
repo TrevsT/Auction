@@ -8,7 +8,9 @@ contract Migrations {
     if (msg.sender == owner) _;
   }
 
-  function Migrations() public {
+  //function Migrations() public {
+	  //this technique has been deprecated and replaced with the "constructor" function
+  constructor() public {
     owner = msg.sender;
   }
 
