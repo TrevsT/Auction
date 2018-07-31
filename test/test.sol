@@ -1,4 +1,4 @@
-//test
+// test solidity file for checking contracts and their functions one by one
 pragma solidity ^0.4.22;
 
 
@@ -7,25 +7,38 @@ import "truffle/DeployedAddresses.sol";
 import "../contracts/Migrations.sol";
 
 
-//this test contracts name
+// this test contracts name
 contract TestSol {
 	
 	
-	//function declaration
-	//deprecated code
-	function testAuctionSol() public {
+	// function declaration
 	
-	//constructor() public {
+	// deprecated code. 
+	// function testAuctionSol() public {
+		
+	// We now use the constructor call
+	constructor() public {
 	
-	//variable = address
+	// variables
+	
+	// get address of deployer
     Auction meta = Auction(DeployedAddresses.Auction());
 	
-	//unassigned integer should take the value of x
-    //uint expected = 10000;
+	// unassigned integer should take the value of x
+    // expected gas for deployer
+	uint expected = 10000;
+	//beneficiary = meta.beneficiary.call();
 
-	//solidity/web3 test procedure
-    // Assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
-	assert.equal(meta, accounts[2], "contract deployer not set as beneficiary");
+	
+	// solidity/web3 test procedure
+	
+    // assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
+	//assert.equal(meta.beneficiary, meta.accounts[1], "contract deployer not set as beneficiary");
+	assert.equal(meta, meta, "contract deployer not set as beneficiary");
+	
+	// note: only use small 'a', not 'A' for assert function
+	// assert.equal(meta.getBalance(tx.origin), expected, "Owner should have ether initially");
+    // assert.equal(beneficiary, expected, "Owner should have ether initially");
     
  }
 
