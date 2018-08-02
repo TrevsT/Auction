@@ -5,8 +5,10 @@ contract Auction {
     // absolute unix timestamps (seconds since 1970-01-01)
     // or time periods in seconds.
     address public beneficiary;
-    uint public auctionEnd;
-    uint public auctionStart;
+    uint public auctionEndTime;
+    uint public auctionStartTime;
+    uint public auctionDuration; 
+
 
     // Current state of the auction.
     address public highestBidder;
@@ -30,12 +32,13 @@ contract Auction {
     /// Create a simple auction with `_biddingTime`
     /// seconds bidding time on behalf of the
     /// beneficiary address `_beneficiary`.
-    constructor(
+    constructor(address _beneficiary,
         uint _biddingTime
     ) public {
-        beneficiary = msg.sender;
-        auctionStart = now;
-        auctionEnd = now + _biddingTime;
+        beneficiary = _beneficiary;
+        auctionStartTime = now;
+        auctionDuration = _biddingTime; 
+        auctionEndTime = auctionStartTime + _biddingTime;
     }
 
     /// Bid on the auction with the value sent
@@ -52,7 +55,7 @@ contract Auction {
         // Revert the call if the bidding
         // period is over.
         require(
-            now <= auctionEnd,
+            now <= auctionEndTime,
             "Auction already ended."
         );
 
@@ -111,7 +114,7 @@ contract Auction {
         // external contracts.
 
         // 1. Conditions
-        require(now >= auctionEnd, "Auction not yet ended.");
+        require(now >= auctionEndTime, "Auction not yet ended.");
         require(!ended, "auctionEnd has already been called.");
 
         // 2. Effects
