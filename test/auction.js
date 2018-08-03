@@ -21,10 +21,13 @@ contract('Auction', function(accounts) {
         console.log("Start Time: " + auctionStart + " EndTime: " + auctionEnd +  " Duration: " + duration);
 
         assert.equal(auctionEnd, auctionStart + duration,"Auction end time not set correctly");
-
-      
      });
 
-
+     it("should place a new bid as the new highest bid", async function() {
+      var auction =  await Auction.deployed();
+      auction.bid({from: accounts[1], value: 200});
+      var theHighestBidder = await auction.highestBidder.call();
+      assert.equal(theHighestBidder, accounts[1], "Bid was not the new highest bid");
+   });
 
 }); 
