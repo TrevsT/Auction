@@ -28,6 +28,6 @@ contract('Auction', function(accounts) {
       auction.bid({from: accounts[1], value: 200});
       var theHighestBidder = await auction.highestBidder.call();
       assert.equal(theHighestBidder, accounts[1], "Bid was not the new highest bid");
-   });
+     });
 
 }); 
