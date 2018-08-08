@@ -2,25 +2,25 @@
 pragma solidity ^0.4.22;
 
 
-import "../contracts/Auction.sol";
 
+import "truffle/Assert.sol";
 //here be buggies
 import "truffle/DeployedAddresses.sol";
+import "../contracts/Auction.sol";
 
-import "../contracts/Migrations.sol";
 
 
 // this test contracts name
-contract TestSol {
+contract TestAuction {
 	
 	
 	/// function declaration
 	
 	// deprecated code. 
-	 //function testAuctionSol() public {
+    function testAuctionSol() public {
 		
 	// We now use the constructor call
-	constructor() public {
+	//constructor() public {
 	
 	/// variables
 	
@@ -38,13 +38,12 @@ contract TestSol {
 	
     // assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
 	// assert.equal(meta.beneficiary, meta.accounts[1], "contract deployer not set as beneficiary");
-	
-	assert.equal(expected, expected1, "contract deployer not set as beneficiary");
+	Assert.equal(expected, expected1, "contract deployer not set as beneficiary");
 	
 	// note: only use small 'a', not 'A' for assert function
 	// assert.equal(meta.getBalance(tx.origin), expected, "Owner should have ether initially");
     // assert.equal(beneficiary, expected, "Owner should have ether initially");
-    
- }
+    }
+ 
 
 }
