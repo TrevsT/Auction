@@ -14,15 +14,15 @@ import "../contracts/Migrations.sol";
 contract TestSol {
 	
 	
-	// function declaration
+	/// function declaration
 	
 	// deprecated code. 
-	// function testAuctionSol() public {
+	 //function testAuctionSol() public {
 		
 	// We now use the constructor call
 	constructor() public {
 	
-	// variables
+	/// variables
 	
 	// get address of deployer
     //Auction meta = Auction(DeployedAddresses.Auction());
@@ -30,15 +30,16 @@ contract TestSol {
 	// unassigned integer should take the value of x
     // expected gas for deployer
 	uint expected = 10000;
+	uint expected1 = 10000;
 	//beneficiary = meta.beneficiary.call();
 
 	
-	// solidity/web3 test procedure
+	/// solidity/web3 test procedure
 	
     // assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
 	// assert.equal(meta.beneficiary, meta.accounts[1], "contract deployer not set as beneficiary");
 	
-	//assert.equal(expected, expected, "contract deployer not set as beneficiary");
+	assert.equal(expected, expected1, "contract deployer not set as beneficiary");
 	
 	// note: only use small 'a', not 'A' for assert function
 	// assert.equal(meta.getBalance(tx.origin), expected, "Owner should have ether initially");
