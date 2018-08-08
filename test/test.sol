@@ -37,7 +37,7 @@ contract TestSol {
 	
     // assert.equal(meta.getBalance(tx.origin), expected, "Owner should have 10000 MetaCoin initially");
 	// assert.equal(meta.beneficiary, meta.accounts[1], "contract deployer not set as beneficiary");
-	Assert.equal(expected, expected, "contract deployer not set as beneficiary");
+	assert.equal(expected, expected, 'contract deployer not set as beneficiary');
 	
 	// note: only use small 'a', not 'A' for assert function
 	// assert.equal(meta.getBalance(tx.origin), expected, "Owner should have ether initially");
