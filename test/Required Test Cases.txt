@@ -1,0 +1,5 @@
+1. Test that an a beneficairy address is assigned as the contract instance is instantiated. 
+2. Test that the auction end time is set by checking it against (start time + duration) 
+3. Test that a new highest bid placed is assigned as the new highesBidder
+4. Test that a bid can be withdrawn
+5. Test that beneficary is transferred highestBid when auction has ended

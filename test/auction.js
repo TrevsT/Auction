@@ -4,14 +4,14 @@ var Auction = artifacts.require("./Auction.sol");
 
 contract('Auction', function(accounts) {
 
-    it("should assign an address as the auction beneficiary when the contract is instantiated", async function() {
+    it("1. should assign an address as the auction beneficiary when the contract is instantiated", async function() {
         var auction =  await Auction.deployed();
         var beneficiary = await auction.beneficiary.call();
         
         assert.equal(beneficiary, accounts[0], "No beneficiary has been defined");
      });
 
-     it("should set auction end time to current time + specified duration", async function() {
+     it("2. should set auction end time to current time + specified duration", async function() {
         var auction =  await Auction.deployed();
         //The contract output for uint numbers seems to output to a literal ('string') in javascript so parseInt is required to convert back to int
         var auctionStart = parseInt(await auction.auctionStartTime.call());
@@ -23,11 +23,21 @@ contract('Auction', function(accounts) {
         assert.equal(auctionEnd, auctionStart + duration,"Auction end time not set correctly");
      });
 
-     it("should place a new bid as the new highest bid", async function() {
+     it("3. should place a new bid as the new highest bid", async function() {
       var auction =  await Auction.deployed();
       auction.bid({from: accounts[1], value: 200});
       var theHighestBidder = await auction.highestBidder.call();
       assert.equal(theHighestBidder, accounts[1], "Bid was not the new highest bid");
+     });
+
+     it("4. should withdraw a bid that was overbid", async function() {
+      var auction =  await Auction.deployed();
+      auction.bid({from: accounts[2], value: 200});
+      var confirmation = auction.withdraw();
+    
+      
+      
+      assert.isFalse(confirmation , "Bid was not withdrawn");
      });
 
 }); 
